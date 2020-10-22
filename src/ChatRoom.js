@@ -40,7 +40,31 @@ function ChatRoom() {
 
         axios.request(optionsSendMessage).then((response) => {
             console.log(response)
+            setMessage('')
+            setNbrUsers(response.data)
         }).catch(error => console.log(error))
+    }
+
+
+    const logoutClickHandler = () => {
+
+        const  optionsLogout = {
+            url:'http://localhost:8000/logout',
+            method:'POST',
+            data: {
+                'name': localStorage.getItem('username')
+            },
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        }
+
+        axios.request(optionsLogout).then((response) => {
+            localStorage.setItem('username','')
+            localStorage.setItem('avatar','')
+            window.location.replace('/login')
+        }).catch(error => console.log(error))
+
     }
     
 
@@ -68,8 +92,8 @@ function ChatRoom() {
                 'Content-Type': 'text/plain'
             }
         }
-        axios.request(optionsConnect).then((response) => {
-            console.log(messages)
+        axios.request(optionsMessages).then((response) => {
+            setMessages(response.data)
         }).catch(error => console.log(error))
 
     },[])
@@ -80,7 +104,7 @@ function ChatRoom() {
             <div className="chat-container" >
                 <div className="chat-header">
                     <img src={`images/avatar-${localStorage.getItem('avatar')}.png`} />
-                    <div className="subDiv"><p id="name"> {localStorage.getItem('username')} </p>
+                    <div className="subDiv"><div className="subSubDiv"><p id="name"> {localStorage.getItem('username')} </p> <img id="logout" onClick={logoutClickHandler} src="images/logout.png"  alt="logout"/></div>
                     <p id="nbrUsers"> <b><span className="numberUsers"> {nbrUsers} </span> </b> online users </p></div>
                  </div>
                 <div className="messages-container">
@@ -89,11 +113,15 @@ function ChatRoom() {
                             {messages.map(item => {
                                 if(item.name === localStorage.getItem('username')){
                                     return <div className="messageItem">
-                                        <div className="myMessage"><p id="myTextMessage">&nbsp;&nbsp;{item.message}&nbsp;&nbsp;</p><img id="chatIcon" src={`images/avatar-${item.avatar}.png`}/></div>
+                                        <div className="myMessage"><div className="firestDiv"><p id="myTextMessage">&nbsp;&nbsp;{item.message}&nbsp;&nbsp; </p><img id="chatIcon" src={`images/avatar-${item.avatar}.png`}/></div>
+                                            <div className="details"><spna> <i>{item.name} </i></spna><span> <i>&nbsp;at&nbsp;{new Date(item.date).getHours()}:{new Date(item.date).getMinutes()}</i></span> </div>
+                                        </div>
                                     </div>
                                 }else{
                                     return <div className="messageItem">
-                                        <div className="usersMessage"><img id="chatIcon" src={`images/avatar-${item.avatar}.png`}/><p id="usersTextMessage">&nbsp;&nbsp;{item.message}&nbsp;&nbsp;</p></div>
+                                        <div className="usersMessage"><div className="firestDiv"><img id="chatIcon" src={`images/avatar-${item.avatar}.png`}/><p id="usersTextMessage">&nbsp;&nbsp;{item.message}&nbsp;&nbsp;</p></div>
+                                        <div className="details"><spna> <i>{item.name} </i></spna><span> <i>&nbsp;at&nbsp;{new Date(item.date).getHours()}:{new Date(item.date).getMinutes()}</i></span> </div>
+                                        </div>
                                     </div>
                                 }
                             })}

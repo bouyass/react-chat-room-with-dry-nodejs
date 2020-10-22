@@ -44,6 +44,8 @@
     border-right: 3px solid #cbd9f4;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .chat-header {
@@ -72,7 +74,7 @@
     font-size: 1.8em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 1vw;
-    margin-left: -2vw;
+    margin-left: 1vw;
 }
 
 .subDiv {
@@ -100,7 +102,11 @@
     height: auto;
     width:auto;
     display: flex;
+    flex-direction: column;
     gap:10px;
+    background-color: #fff;
+    -moz-border-radius:0px 0px 10px 10px;
+    -webkit-border-radius:0px 0px 10px 10px;
 }
 
 .usersMessage {
@@ -108,35 +114,72 @@
     height:auto;
     width:auto;
     display: flex;
+    flex-direction: column;
     gap: 10px;
+    background-color: #4ac959;
+    -moz-border-radius:0px 0px 10px 10px;
+    -webkit-border-radius:0px 0px 10px 10px;
+
 }
 
 #chatIcon {
     width: 50px;
     height:50px;
     border-radius: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.firestDiv {
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    align-items: center;
+    width:auto;
 }
 
 #myTextMessage {
-    background-color: #fff;
+    
     justify-content: center;
     align-items: center;
     margin-top: 10%;
     font-size: 1.2em;
-    -moz-border-radius:0px 0px 10px 10px;
-    -webkit-border-radius:0px 0px 10px 10px;
+    text-align: left;
+    margin-left:2%;
+    width:70%;
 }
 
 
 
 #usersTextMessage {
-    background-color: greenyellow;
+    
     margin-top: 10%;
     font-size: 1.2em;
     -moz-border-radius:0px 0px 10px 10px;
     -webkit-border-radius:0px 0px 10px 10px;
+    text-align: left;
+    margin-left:2%;
+    width:70%;
 }
 
+.subSubDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+#logout {
+    width:32px;
+    height:32px;
+    margin-top: 1%;
+}
 
-
+.details {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1em;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 6%;
+    margin-top: 0%;
+    height:5%;
+}
