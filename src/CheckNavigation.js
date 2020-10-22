@@ -12,7 +12,7 @@ function CheckNavigation({component: Component, ...rest}) {
             {...rest}
             render={props=> loggedIn.length > 0 ? 
                     <Component {...props}/> : 
-                    <Redirect to={{ pathname: '/'}} />
+                    <Redirect to={{ pathname: '/login'}} />
             }
         />
     )
