@@ -1,0 +1,17 @@
+.messages-container{
+    border: 1px solid black;
+}
+
+.messages {
+    height:500px;
+    width:100%;
+    background-color: gray;
+}
+
+.typing-area {
+    width: 100%;
+}
+
+#textarea {
+    width:100%;
+}
